@@ -1,2 +1,1 @@
-# NesneMVC
- Entity Framework Code First yapısıyla oluşturulmuş MVC e-Ticaret Sitesi Projesi
+Projeye Visual Studio 2017 ile sorunsuz çalışıyor, diğer sürümler sorun çıkarabilir.
