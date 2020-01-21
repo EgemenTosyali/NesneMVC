@@ -1,0 +1,205 @@
+﻿@model IEnumerable<NesneMVC.Models.Urunler>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/Eshopper/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Eshopper/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Eshopper/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/Eshopper/css/price-range.css" rel="stylesheet">
+    <link href="/Eshopper/css/animate.css" rel="stylesheet">
+    <link href="/Eshopper/css/main.css" rel="stylesheet">
+    <link href="/Eshopper/css/responsive.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/Eshopper/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/Eshopper/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Eshopper/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Eshopper/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/Eshopper/images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+<body>
+    <header id="header">
+        <div class="header_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> +90 541 355 84 61</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> egementosyalibs@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-8">
+                        @if (Session["KullaniciID"] == null)
+                        {
+                            <div class="shop-menu pull-right">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="/Hepsisurada/Giris"><i class="fa fa-lock"></i> Giriş Yap</a></li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="shop-menu pull-right">
+                                <ul class="nav navbar-nav">
+                                    <li><a>Hoşgeldin @Session["KullaniciAdi"]</a></li>
+                                    <li><a href="/Hepsisurada/Hesabim"><i class="fa fa-user"></i> Hesabım</a></li>
+                                    <li><a href="/Hepsisurada/Sepet"><i class="fa fa-shopping-cart"></i> Sepet</a></li>
+                                    <li><a href="/Hepsisurada/Siparislerim"><i class="fa fa-shopping-cart"></i> Siparişlerim</a></li>
+                                    <li><a href="/Hepsisurada/Cikis"><i class="fa fa-lock"></i>Çıkış Yap</a></li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="/Hepsisurada/Index" class="active"><h2>Ana Sayfa</h2></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Index", "Hepsisurada", FormMethod.Get))
+                    {
+
+                        <div class="col-sm-3">
+                            <div class="search_box">
+                                <p>
+                                    Aranacak Ürün: @Html.TextBox("arama")
+                                </p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner">
+                            @foreach (var g in ViewBag.galeri)
+                            {
+                                if (ViewBag.ilkmi == 1)
+                                {
+                                    <div class="item active">
+                                        <div class="col-sm-6">
+                                            <h1><span>@g.GaleriBaslik</span></h1>
+                                            <h2>@g.GaleriDuyuru</h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <img src="@g.GaleriResim" height="300" width="500"/>
+                                        </div>
+                                    </div>
+                                    ViewBag.ilkmi = 0;
+                                }
+                                else
+                                {
+                                    <div class="item">
+                                        <div class="col-sm-6">
+                                            <h1><span>@g.GaleriBaslik</span></h1>
+                                            <h2>@g.GaleriDuyuru</h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <img src="@g.GaleriResim" height="300" width="500"/>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/slider-->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>Kategoriler</h2>
+                        <div class="panel-group category-products" id="accordian">
+                           @foreach (var i in ViewBag.kategori)
+                           {
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a href="/Hepsisurada/Index/@i.KategoriID">@i.KategoriAdi</a></h4>
+                                </div>
+                            </div>
+                           }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9 padding-right">
+                    <div class="features_items">
+                        <!--features_items-->
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="@item.UrunResim"height="220" width="100"/>
+                                            <h2>@item.UrunFiyat</h2>
+                                            <p>@item.UrunAdi</p>
+                                            <a href="/Hepsisurada/Urun/@item.UrunID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                        </div>
+                                        <div class="product-overlay">
+                                            <div class="overlay-content">
+                                                <h2>@item.UrunFiyat</h2>
+                                                <p>@item.UrunAdi</p>
+                                                <a href="/Hepsisurada/Urun/@item.UrunID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div><!--features_items-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/Eshopper/js/jquery.js"></script>
+    <script src="/Eshopper/js/bootstrap.min.js"></script>
+    <script src="/Eshopper/js/jquery.scrollUp.min.js"></script>
+    <script src="/Eshopper/js/price-range.js"></script>
+    <script src="/Eshopper/js/jquery.prettyPhoto.js"></script>
+    <script src="/Eshopper/js/main.js"></script>
+</body>
+</html>

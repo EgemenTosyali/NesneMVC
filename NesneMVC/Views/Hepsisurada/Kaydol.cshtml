@@ -1,0 +1,63 @@
+﻿@model NesneMVC.Models.Kullanicilar
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/Eshopper/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Eshopper/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Eshopper/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/Eshopper/css/price-range.css" rel="stylesheet">
+    <link href="/Eshopper/css/animate.css" rel="stylesheet">
+    <link href="/Eshopper/css/main.css" rel="stylesheet">
+    <link href="/Eshopper/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+    <section id="form">
+        <!--form-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="signup-form">
+                        <!--sign up form-->
+                        <h3>Sitemize Kaydınızı Yapın!</h3>
+                        @using (Html.BeginForm("Kaydol", "Hepsisurada", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input name="KullaniciKA" type="text" placeholder="Kullanıcı Adı" />
+                            @Html.ValidationMessageFor(model => model.KullaniciKA, "", new { @class = "text-danger" })
+                            <input name="KullaniciSF" type="text" placeholder="Şifre" />
+                            @Html.ValidationMessageFor(model => model.KullaniciSF, "", new { @class = "text-danger" })
+                            <input name="KullaniciAdi" type="text" placeholder="Adınız" />
+                            @Html.ValidationMessageFor(model => model.KullaniciAdi, "", new { @class = "text-danger" })
+                            <input name="KullaniciEmail" type="email" placeholder="Email Address" />
+                            @Html.ValidationMessageFor(model => model.KullaniciEmail, "", new { @class = "text-danger" })
+                            <input name="KullaniciTelefon" type="tel" placeholder="Telefon" />
+                            @Html.ValidationMessageFor(model => model.KullaniciTelefon, "", new { @class = "text-danger" })
+                            <input name="KullaniciDogum" type="datetime" placeholder="Doğum Tarihi" />
+                            @Html.ValidationMessageFor(model => model.KullaniciDogum, "", new { @class = "text-danger" })
+                            <input name="KullaniciAdres" type="text" placeholder="Adres" />
+                            @Html.ValidationMessageFor(model => model.KullaniciAdres, "", new { @class = "text-danger" })
+                            <button type="submit" class="btn btn-success">Kaydol</button>
+                            @Html.Raw(TempData["onay"])
+                        }
+                    </div>
+                    <a class="active" href="/Hepsisurada/Giris"><h2>Zaten Hesabınız Var Mı? Giriş Yapın!</h2> </a>
+                </div>
+            </div>
+        </div>
+    </section><!--/form-->
+    <script src="/Eshopper/js/jquery.js"></script>
+    <script src="/Eshopper/js/price-range.js"></script>
+    <script src="/Eshopper/js/jquery.scrollUp.min.js"></script>
+    <script src="/Eshopper/js/bootstrap.min.js"></script>
+    <script src="/Eshopper/js/jquery.prettyPhoto.js"></script>
+    <script src="/Eshopper/js/main.js"></script>
+</body>
+</html>

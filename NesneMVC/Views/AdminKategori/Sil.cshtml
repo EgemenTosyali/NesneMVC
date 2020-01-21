@@ -1,0 +1,28 @@
+﻿@model NesneMVC.Models.Kategori
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>SİLMEK İSTEDİĞİNİZE EMİN MİSİNİZ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KategoriAdi)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="/AdminKategori/Index" class="btn btn-default">Listeye Dön</a>
+            <input type="submit" value="Sil" class="btn btn-danger" />
+        </div>
+    }
+</div>

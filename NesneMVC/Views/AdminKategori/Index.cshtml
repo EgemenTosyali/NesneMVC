@@ -1,0 +1,36 @@
+﻿@model IEnumerable<NesneMVC.Models.Kategori>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<p>
+    <a href="/AdminKategori/KategoriEkle" class="btn btn-success">Kategori Ekle</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KategoriID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KategoriAdi)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KategoriID)
+        </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.KategoriAdi)
+        </th>
+        <td>
+            <a href="/AdminKategori/Guncelle/@item.KategoriID" class="btn btn-primary">Güncelle</a>
+        </td>
+        <td>
+            <a href="/AdminKategori/Sil/@item.KategoriID" class="btn btn-danger">Sil</a>
+        </td>
+    </tr>
+}
+</table>

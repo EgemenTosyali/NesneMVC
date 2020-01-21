@@ -1,0 +1,118 @@
+﻿@model NesneMVC.Models.Urunler
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/Eshopper/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Eshopper/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Eshopper/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/Eshopper/css/price-range.css" rel="stylesheet">
+    <link href="/Eshopper/css/animate.css" rel="stylesheet">
+    <link href="/Eshopper/css/main.css" rel="stylesheet">
+    <link href="/Eshopper/css/responsive.css" rel="stylesheet">
+</head><!--/head-->
+
+<body>
+    <header id="header">
+    <div class="header_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> +90 541 355 84 61</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> egementosyalibs@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header_top-->
+
+    <div class="header-middle">
+        <!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="/Hepsisurada/Index" class="active"><h2>Ana Sayfa</h2></a></li>
+                        </ul>
+                    </div>
+                    @if (Session["KullaniciID"] == null)
+                    {
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/Hepsisurada/Giris"><i class="fa fa-lock"></i> Giriş Yap</a></li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a>Hoşgeldin @Session["KullaniciAdi"]</a></li>
+                                <li><a href="/Hepsisurada/Hesabim"><i class="fa fa-user"></i> Hesabım</a></li>
+                                <li><a href="/Hepsisurada/Sepet"><i class="fa fa-shopping-cart"></i> Sepet</a></li>
+                                <li><a href="/Hepsisurada/Siparislerim/"><i class="fa fa-shopping-cart"></i> Siparişlerim</a></li>
+                                <li><a href="/Hepsisurada/Cikis"><i class="fa fa-lock"></i>Çıkış Yap</a></li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div><!--/header-middle-->
+</header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 padding-right">
+                        <div class="product-details">
+                            <!--product-details-->
+                            <div class="col-sm-5">
+                                <div class="view-product">
+                                    <img src="@Model.UrunResim" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="product-information">
+                                    <!--/product-information-->
+                                    <img src="/Eshopper/images/product-details/new.jpg" class="newarrival" alt="" />
+                                    <h3>Ürün:  @Model.UrunAdi</h3>
+                                    <span>
+                                        <span>@Model.UrunFiyat ₺</span>
+                                        @if (Model.UrunStok != 0)
+                                        {
+                                        <a class="btn btn-success" href="/Hepsisurada/SepeteEkle/@Model.UrunID">Sepete Ekle</a>
+                                        }
+                                    </span>
+                                        @if (Model.UrunStok == 0)
+                                        {
+                                            <h3>Tükendi</h3>
+                                        }
+                                    <h2>Stok: @Model.UrunStok</h2>
+                                    <p><b>@Model.UrunBilgi</b></p>
+                                </div><!--/product-information-->
+                            </div>
+                        </div><!--/product-details-->
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/Eshopper/js/jquery.js"></script>
+    <script src="/Eshopper/js/price-range.js"></script>
+    <script src="/Eshopper/js/jquery.scrollUp.min.js"></script>
+    <script src="/Eshopper/js/bootstrap.min.js"></script>
+    <script src="/Eshopper/js/jquery.prettyPhoto.js"></script>
+    <script src="/Eshopper/js/main.js"></script>
+</body>
+</html>

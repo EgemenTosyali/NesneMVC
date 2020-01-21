@@ -1,0 +1,71 @@
+﻿@model IEnumerable<NesneMVC.Models.Urunler>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body class="animsition">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-data__tool">
+                <a class="btn btn-warning" href="/AdminUrunler/Index">Tüm Ürünler</a>
+            </div>
+            <div class="table-data__tool-right">
+                <a href="/AdminUrunler/KategoriyeEkle/@ViewBag.ID" class="au-btn au-btn-icon au-btn--green au-btn--small">Kategoriye Ürün Ekle</a>
+            </div>
+            <br />
+            <div>
+                @using (Html.BeginForm("Kategori", "AdminUrunler",new {id=ViewBag.id },FormMethod.Get))
+                {
+                    <p>
+                        Aranacak Ürün: @Html.TextBox("arama")
+                        <input type="submit" value="Ara" />
+                    </p>
+                }
+            </div>
+            <div class="table-responsive table-responsive-data2">
+                <table id="tbl1" class="table table-data2">
+                    <thead>
+                        <tr>
+                            <th>Kategori Adı</th>
+                            <th>Ürün Adı</th>
+                            <th>Ürün Fiyatı</th>
+                            <th>Ürün Stok</th>
+                            <th>Resim</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>
+                                    <span class="block-email">@item.Kategori.KategoriAdi</span>
+                                </th>
+                                <th class="desc">@item.UrunAdi</th>
+                                <th>
+                                    <span class="status--process">@item.UrunFiyat TL</span>
+                                </th>
+                                <th>@item.UrunStok ADET</th>
+                                <th>
+                                    <img src="@item.UrunResim" height="60" width="90" />
+                                </th>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <a href="/AdminUrunler/Guncelle/@item.UrunID" class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </a>
+                                        <a href="/AdminUrunler/Detay/@item.UrunID" class="item" data-toggle="tooltip" data-placement="top" title="Detay">
+                                            <i class="zmdi zmdi-devices"></i>
+                                        </a>
+                                        <a href="/AdminUrunler/Sil/@item.UrunID" class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,42 @@
+﻿@model NesneMVC.Models.Galeri
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.GaleriBaslik, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GaleriBaslik, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GaleriBaslik, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GaleriDuyuru, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GaleriDuyuru, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GaleriDuyuru, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.GaleriResim, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="UploadImage" id="UploadImage" />
+            </div>
+            @Html.ValidationMessageFor(model => model.GaleriResim, "", new { @class = "text-danger" })
+        </div>
+        @Html.Raw(TempData["bos"])
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ürünü Ekle" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a href="/AdminPanel/Galeri" class="btn btn-default">Listeye Dön</a>
+</div>

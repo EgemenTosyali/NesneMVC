@@ -1,0 +1,122 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/Eshopper/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Eshopper/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Eshopper/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/Eshopper/css/price-range.css" rel="stylesheet">
+    <link href="/Eshopper/css/animate.css" rel="stylesheet">
+    <link href="/Eshopper/css/main.css" rel="stylesheet">
+    <link href="/Eshopper/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+    <header id="header">
+        <div class="header_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> +90 541 355 84 61</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> egementosyalibs@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="/Hepsisurada/Index" class="active"><h2>Ana Sayfa</h2></a></li>
+                            </ul>
+                        </div>
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a>Hoşgeldin @Session["KullaniciAdi"]</a></li>
+                                <li><a href="/Hepsisurada/Hesabim/"><i class="fa fa-user"></i> Hesabım</a></li>
+                                <li><a href="/Hepsisurada/Sepet/"><i class="fa fa-shopping-cart"></i> Sepet</a></li>
+                                <li><a href="/Hepsisurada/Siparislerim/"><i class="fa fa-shopping-cart"></i> Siparişlerim</a></li>
+                                <li><a href="/Hepsisurada/Cikis"><i class="fa fa-lock"></i>Çıkış Yap</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+    </header>
+    <section id="cart_items">
+        <div class="container">
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Ürün</td>
+                            <td class="description"></td>
+                            <td class="price">Fiyat</td>
+                            <td class="quantity">Adet</td>
+                            <td class="total">Toplam</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.sepet)
+                        {
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img src="@item.Urunler.UrunResim" height="100" width="100"></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">@item.Urunler.UrunAdi</a></h4>
+                                </td>
+                                <td class="cart_price">
+                                    <p>@item.Urunler.UrunFiyat ₺</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    @using (Html.BeginForm("SepetAdetGuncelle", "Hepsisurada", new { id = item.SepetID, adet = FormMethod.Get }))
+                                    {
+                                        <div class="cart_quantity_button">
+                                            <input class="cart_quantity_input" type="number" name="adet" value="@item.SepetUrunSayi" autocomplete="off" min="1" size="2">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Adet Güncelle</button>
+                                    }
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">@item.SepetToplamFiyat ₺</p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="btn btn-danger" href="/Hepsisurada/SepetSil/@item.Urunler.UrunID"><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @using (Html.BeginForm("Odeme", "Hepsisurada", FormMethod.Post))
+                {
+                    <h2 class="price">Adres</h2>
+                    <input name="adres" type="text" value="@ViewBag.adres" />
+                    <button type="submit" class="btn btn-success">Ödeme Yap</button>
+                }
+                @Html.Raw(TempData["test"])
+            </div>
+        </div>
+    </section>
+    <script src="/Eshopper/js/jquery.js"></script>
+    <script src="/Eshopper/js/bootstrap.min.js"></script>
+    <script src="/Eshopper/js/jquery.scrollUp.min.js"></script>
+    <script src="/Eshopper/js/jquery.prettyPhoto.js"></script>
+    <script src="/Eshopper/js/main.js"></script>
+</body>
+</html>

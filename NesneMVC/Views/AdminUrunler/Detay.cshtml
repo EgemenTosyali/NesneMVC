@@ -1,0 +1,56 @@
+﻿@model NesneMVC.Models.Urunler
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.KategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.KategoriAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunFiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunFiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunStok)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunStok)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunBilgi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunBilgi)
+        </dd>
+        <img src="@Model.UrunResim"  height="120" width="180" />
+
+    </dl>
+</div>
+<p>
+    <a href="/AdminUrunler/Index" class="btn btn-default">Listeye Dön</a>
+    <a href="/AdminUrunler/Guncelle/@Model.UrunID" class="btn btn-primary">Güncelle</a>
+</p>

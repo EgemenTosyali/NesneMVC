@@ -1,0 +1,36 @@
+﻿@model NesneMVC.Models.Galeri
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Silmek İstediğinize Emin Misiniz?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GaleriBaslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GaleriBaslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GaleriDuyuru)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GaleriDuyuru)
+        </dd>
+        <dd>
+            <img src="@Model.GaleriResim" height="80" width="120" />
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="GaleriSil" class="btn btn-danger" /> &nbsp;&nbsp;&nbsp;
+            @Html.ActionLink("Galeriye Dön", "Galeri", new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

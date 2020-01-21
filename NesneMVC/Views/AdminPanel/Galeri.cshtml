@@ -1,0 +1,47 @@
+﻿@model IEnumerable<NesneMVC.Models.Galeri>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body class="animsition">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive table-responsive-data2">
+                <div class="table-data__tool-right">
+                    <a href="/AdminPanel/GaleriEkle" class="au-btn au-btn-icon au-btn--green au-btn--small">Galeri Oluştur</a>
+                </div>
+                <br />
+                <table id="tbl1" class="table table-data2">
+                    <thead>
+                        <tr>
+                            <th>Başlık</th>
+                            <th>Duyuru</th>
+                            <th>Resim</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th class="status--process">@item.GaleriBaslik</th>
+                                <th class="status--process">@item.GaleriDuyuru</th>
+                                <th>
+                                    <img src="@item.GaleriResim" height="40" width="60" />
+                                </th>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <a href="/AdminPanel/GaleriGuncelle/@item.GaleriID" class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </a>
+                                        <a href="/AdminPanel/GaleriSil/@item.GaleriID" class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

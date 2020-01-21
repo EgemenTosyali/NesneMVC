@@ -1,0 +1,49 @@
+﻿@model NesneMVC.Models.Galeri
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.GaleriID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GaleriBaslik, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GaleriBaslik, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GaleriBaslik, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GaleriDuyuru, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GaleriDuyuru, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GaleriDuyuru, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.GaleriResim, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GaleriResim, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.GaleriResim, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <img src="@Model.GaleriResim" height="80" width="120" />
+            <input type="file" name="UploadImage" id="UploadImage" />
+        </div>
+        @Html.Raw(TempData["msg"])
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    <div>
+        <a href="/AdminPanel/Galeri" class="btn btn-default">Listeye Dön</a>
+    </div>
+</form>

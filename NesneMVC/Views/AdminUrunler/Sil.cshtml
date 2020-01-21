@@ -1,0 +1,61 @@
+﻿@model NesneMVC.Models.Urunler
+
+@{
+    ViewBag.Title = "Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Silmek İstediğinize Emin Misiniz?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.KategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.KategoriAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunFiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunFiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunStok)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunStok)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunBilgi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunBilgi)
+        </dd>
+        <dd>
+            <img src="@Model.UrunResim" height="80" width="120" />
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> &nbsp;&nbsp;&nbsp;
+            @Html.ActionLink("Ürünlere Dön", "Index", new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
